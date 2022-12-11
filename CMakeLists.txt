@@ -31,7 +31,7 @@ endif()
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-find_package(Qt5 COMPONENTS Gui Widgets Core REQUIRED)
+find_package(Qt6 COMPONENTS Gui Widgets Core REQUIRED)
 
 FILE(GLOB RDPSources parallel-rdp/*.cpp)
 
@@ -83,6 +83,6 @@ if(WIN32)
     target_link_libraries(${NAME_PLUGIN_M64P} ${OPENGL_LIBRARIES} -lwinmm)
 endif()
 
-target_link_libraries(${NAME_PLUGIN_M64P} Qt5::Gui Qt5::Widgets)
+target_link_libraries(${NAME_PLUGIN_M64P} Qt6::Gui Qt6::Widgets)
 
 set_target_properties(${NAME_PLUGIN_M64P} PROPERTIES PREFIX "")
