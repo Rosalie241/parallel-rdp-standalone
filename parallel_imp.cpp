@@ -304,6 +304,22 @@ void vk_read_screen(unsigned char* dest)
 					dest[1] = image_buffer[2];
 					dest[2] = image_buffer[1];
 					break;
+				case VK_FORMAT_A2B10G10R10_UNORM_PACK32:
+				{
+					uint32_t pixel = *(uint32_t*) image_buffer;
+					dest[0] = pixel >> 2;
+					dest[1] = pixel >> 12;
+					dest[2] = pixel >> 22;
+					break;
+				}
+				case VK_FORMAT_A2R10G10B10_UNORM_PACK32:
+				{
+					uint32_t pixel = *(uint32_t*) image_buffer;
+					dest[0] = pixel >> 22;
+					dest[1] = pixel >> 12;
+					dest[2] = pixel >> 2;
+					break;
+				}
 				default:
 					LOGE("Encountered unknown image format in vk_read_screen: %d\n", image_format);
 					wsi->get_device().unmap_host_buffer(*buffer, Vulkan::MEMORY_ACCESS_READ_BIT);
