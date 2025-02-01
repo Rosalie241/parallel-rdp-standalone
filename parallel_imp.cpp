@@ -477,7 +477,7 @@ bool vk_init()
 	wsi_platform.reset(new MupenWSIPlatform);
 	wsi->set_platform(wsi_platform.get());
 	wsi->set_present_mode(window_vsync ? Vulkan::PresentMode::SyncToVBlank : Vulkan::PresentMode::UnlockedMaybeTear);
-	wsi->set_backbuffer_srgb(false);
+	wsi->set_backbuffer_format(Vulkan::BackbufferFormat::UNORM);
 	if (!wsi->init_simple(1, handles))
 		return false;
 
