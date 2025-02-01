@@ -287,7 +287,8 @@ void vk_read_screen(unsigned char* dest)
 		image_buffer -= window_width * 4;
 		for (int j = 0; j < window_width; ++j)
 		{
-			switch (image->get_format()) {
+			auto image_format = image->get_format();
+			switch (image_format) {
 				case VK_FORMAT_B8G8R8A8_UNORM:
 					dest[0] = image_buffer[2];
 					dest[1] = image_buffer[1];
@@ -304,6 +305,7 @@ void vk_read_screen(unsigned char* dest)
 					dest[2] = image_buffer[1];
 					break;
 				default:
+					LOGE("Encountered unknown image format in vk_read_screen: %d\n", image_format);
 					wsi->get_device().unmap_host_buffer(*buffer, Vulkan::MEMORY_ACCESS_READ_BIT);
 					return;
 			}
